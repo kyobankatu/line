@@ -35,7 +35,7 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  let url = 'https://stickershop.line-scdn.net/stickershop/v1/sticker/'+event.message.packageId+'/iPhone/sticker_key@2x.png'
+  let url = 'https://stickershop.line-scdn.net/stickershop/v1/sticker/'+event.message.stickerId+'/iPhone/sticker_key@2x.png'
   // create a echoing text message
   const echo = { 
       type: 'text', 
