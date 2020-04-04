@@ -67,7 +67,7 @@ client_dis.on('ready', () => {
 client_dis.on('message', msg => {
     if (msg.content === 'ping') {
         msg.guild.createEmoji(url, id+'_LINE')
-  .then(emoji => console.log(client_dis.channels.cache.get('602424007530119171').send(`Created new emoji with name ${emoji.name}`)))
+  .then(emoji => console.log(`Created new emoji with name ${emoji.name}`))
   .catch(console.error);
     }
 });
