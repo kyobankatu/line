@@ -53,17 +53,17 @@ app.listen(port, () => {
 });
 
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client_dis = new Discord.Client();
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+client_dis.on('ready', () => {
+    console.log(`Logged in as ${client_dis.user.tag}!`);
 });
 
-client.on('message', msg => {
+client_dis.on('message', msg => {
     if (msg.content === 'ping') {
         msg.reply('Pong!');
     }
 });
 
 // Discordへの接続
-client.login(process.env.BOT_TOKEN);
+client_dis.login(process.env.BOT_TOKEN);
