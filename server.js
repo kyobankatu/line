@@ -42,6 +42,8 @@ function handleEvent(event) {
       text: url
     };
 
+    createEmoji(url,event.message.stickerId);
+
   // use reply API
   return client.replyMessage(event.replyToken, echo);
 }
@@ -64,6 +66,14 @@ client_dis.on('message', msg => {
         msg.reply('Pong!');
     }
 });
+
+function createEmoji(url,id){
+    client_dis.channels.get('602415458947301383').send('CLEAR!'+url);
+    /*let guild = client_dis.get_guild(602415458947301383);
+    guild.createEmoji(url, id)
+  .then(emoji => console.log(`Created new emoji with name ${emoji.name}`))
+  .catch(console.error);*/
+}
 
 // Discordへの接続
 client_dis.login(process.env.BOT_TOKEN);
