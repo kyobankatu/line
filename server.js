@@ -3,9 +3,6 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
-let url=null;
-let id=null;
-
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -38,14 +35,15 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  url = 'https://stickershop.line-scdn.net/stickershop/v1/sticker/'+event.message.stickerId+'/iPhone/sticker_key@2x.png'
+  let url = 'https://stickershop.line-scdn.net/stickershop/v1/sticker/'+event.message.stickerId+'/iPhone/sticker_key@2x.png'
   // create a echoing text message
   const echo = { 
       type: 'text', 
       text: url
     };
-    id=event.message.stickerId;
-    //createEmoji(url,event.message.stickerId);
+
+    sendEmoji(url);
+    //createEmoji(url);
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
@@ -66,19 +64,21 @@ client_dis.on('ready', () => {
 
 client_dis.on('message', msg => {
     if (msg.content === 'ping') {
-        msg.guild.createEmoji(url, id+'_LINE')
-  .then(emoji => console.log(`Created new emoji with name ${emoji.name}`))
-  .catch(console.error);
+        msg.reply('Pong!');
     }
 });
 
-function createEmoji(url,id){
+function createEmoji(url){
     //client_dis.channels.cache.get('602424007530119171').send('メッセージ');
     let guild_id = '602415458947301383';
     let guild = client_dis.guilds.cache.get(guild_id);
     guild.createEmoji(url, id+'_LINE')
-  .then(emoji => console.log(client_dis.channels.cache.get('602424007530119171').send(`Created new emoji with name ${emoji.name}`)))
+  .then(emoji => console.log(`Created new emoji with name ${emoji.name}`))
   .catch(console.error);
+}
+
+function sendEmoji(url){
+    client_dis.channels.cache.get('602424007530119171').send(url);
 }
 
 // Discordへの接続
