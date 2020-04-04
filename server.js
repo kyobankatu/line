@@ -30,13 +30,17 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 // event handler
 function handleEvent(event) {
-  if (event.type !== 'message' || event.message.type !== 'text') {
+  if (event.type !== 'message' || event.message.type !== 'sticker') {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
 
+  let url = 'https://stickershop.line-scdn.net/stickershop/v1/sticker/'+event.message.packageId+'/iPhone/sticker_key@2x.png'
   // create a echoing text message
-  const echo = { type: 'text', text: event.message.text };
+  const echo = { 
+      type: 'text', 
+      text: url
+    };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
