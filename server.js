@@ -71,9 +71,9 @@ function createEmoji(url,id){
     //client_dis.channels.cache.get('602424007530119171').send('メッセージ');
     let guild_id = '602415458947301383';
     let guild = client_dis.guilds.cache.get(guild_id);
-    /*guild.createEmoji(url, id)
+    guild.createEmoji(url, id)
   .then(emoji => console.log(`Created new emoji with name ${emoji.name}`))
-  .catch(console.error);*/
+  .catch(console.error);
 }
 
 // Discordへの接続
