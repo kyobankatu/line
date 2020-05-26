@@ -61,15 +61,14 @@ client_dis.on('message', msg => {
     if (str[0] === '/setName') {
       emojis[str[2]]=str[1];
       msg.reply(str[1]);
-    }/*else if(str[0]==='/getName'){
-      Object.keys(emojis).forEach(function(key) {
-        var val = this[key]; // this は obj
-        if(key===str[1]){
-          msg.reply(val);
+    }else if(str[0]==='/getName'){
+      for (let key in emojis) {
+        if(emojis[key]===str[0]){
+          msg.reply(key);
           break;
         }
-      }, obj);
-    }*/else if(str[0] === 's'){
+      }
+    }else if(str[0] === 's'){
       sendEmoji(emojis[str[1]]);
     }
 });
