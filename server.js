@@ -64,10 +64,10 @@ client_dis.on('ready', () => {
 });
 
 client_dis.on('message', msg => {
-    if(message.author.bot) return;
+    if(message.author == client.user) return;
 
     //var str = msg.content.split(' ');
-    message.reply(str);
+    message.reply(msg);
     /*if (str[0] === '/setName') {
       emojis[str[1]]=emojis[2];
     }else if(str[0] === 's'){
