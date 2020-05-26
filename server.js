@@ -68,12 +68,12 @@ client_dis.on('message', msg => {
     var str = msg.content.split(' ');
     if (str[0] === '/setName') {
       emojis[str[2]]=str[1];
-      msg.reply("DONE!");
+      msg.reply('DONE!');
     }else if('/getName'){
       Object.keys(emojis).forEach(function(key) {
         var val = this[key]; // this は obj
         if(key===str[1]){
-          msg.reply(value);
+          msg.reply(val);
           break;
         }
       }, obj);
