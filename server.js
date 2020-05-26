@@ -78,7 +78,7 @@ client_dis.on('message', msg => {
         }
       }, obj);
     }else if(str[0] === 's'){
-      sendEmoji(emojis[str[1]],null);
+      sendEmoji(emojis[str[1]]);
     }
 });
 
@@ -91,7 +91,7 @@ function createEmoji(url){
   .catch(console.error);
 }
 
-function sendEmoji(url,user){
+function sendEmoji(url){
     client_dis.channels.cache.get('602424007530119171').send(url);
 }
 
