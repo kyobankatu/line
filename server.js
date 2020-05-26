@@ -85,9 +85,6 @@ function createEmoji(url){
 }
 
 function sendEmoji(url,user){
-    if(!emojis[url]){
-      emojis[url]=url;
-    }
     client_dis.channels.cache.get('602424007530119171').send(url);
     client_dis.channels.cache.get('602424007530119171').send('by ');
 }
