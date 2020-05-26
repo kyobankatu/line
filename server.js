@@ -64,7 +64,7 @@ client_dis.on('ready', () => {
 });
 
 client_dis.on('message', msg => {
-    if(msg.author == client.user) return;
+    if(msg.author.bot) return;
 
     //var str = msg.content.split(' ');
     msg.reply(msg.content);
