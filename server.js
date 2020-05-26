@@ -63,7 +63,7 @@ client_dis.on('message', msg => {
       msg.reply(str[1]);
     }else if(str[0]==='/getName'){
       for (let key in emojis) {
-        if(emojis[key]===str[0]){
+        if(emojis[key]===str[1]){
           msg.reply(key);
           break;
         }
