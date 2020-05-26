@@ -65,24 +65,29 @@ client_dis.on('ready', () => {
 
 client_dis.on('message', msg => {
     if(msg.author.bot) return;
-    var str = msg.content.split(' ');
-    switch(str[0]){
-      case '/setName':
-        emojis[str[2]]=str[1];
-        msg.reply("DONE!");
-        break;
-      case '/getName':
-        Object.keys(emojis).forEach(function(key) {
-          var val = this[key]; // this は obj
-          if(key===str[1]){
-            msg.reply(val);
-            break;
-          }
-        }, obj);
-        break;
-      case 's':
-        sendEmoji(emojis[str[1]],null);
-        break;
+    try{
+      var str = msg.content.split(' ');
+      switch(str[0]){
+        case '/setName':
+          emojis[str[2]]=str[1];
+          msg.reply("DONE!");
+          break;
+        case '/getName':
+          Object.keys(emojis).forEach(function(key) {
+            var val = this[key]; // this は obj
+            if(key===str[1]){
+              msg.reply(val);
+              break;
+            }
+          }, obj);
+          break;
+        case 's':
+          sendEmoji(emojis[str[1]],null);
+          break;
+      }
+    }catch(e){
+      console.log(e);
+      return;
     }
 });
 
