@@ -2,6 +2,7 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
+var emojis = {};
 
 // create LINE SDK config from env variables
 const config = {
@@ -63,8 +64,11 @@ client_dis.on('ready', () => {
 });
 
 client_dis.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('Pong!');
+    var str = msg.content.split(' ');
+    if (str[0] === '/setName') {
+      emojis[str[1]]=emojis[2];
+    }else if(str[0] === 's'){
+      sendEmoji(emojis[str[1]],null);
     }
 });
 
@@ -77,8 +81,12 @@ function createEmoji(url){
   .catch(console.error);
 }
 
-function sendEmoji(url){
+function sendEmoji(url,user){
+    if(!emojis[url]){
+      emojis[url]=url;
+    }
     client_dis.channels.cache.get('602424007530119171').send(url);
+    client_dis.channels.cache.get('602424007530119171').send('by ');
 }
 
 // Discordへの接続
