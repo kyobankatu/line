@@ -66,11 +66,23 @@ client_dis.on('ready', () => {
 client_dis.on('message', msg => {
     if(msg.author.bot) return;
     var str = msg.content.split(' ');
-    if (str[0] === '/setName') {
-      emojis[str[2]]=str[1];
-      msg.reply("DONE!");
-    }else if(str[0] === 's'){
-      sendEmoji(emojis[str[1]],null);
+    switch(str[0]){
+      case '/setName':
+        emojis[str[2]]=str[1];
+        msg.reply("DONE!");
+        break;
+      case '/getName':
+        Object.keys(emojis).forEach(function(key) {
+          var val = this[key]; // this は obj
+          if(key===str[1]){
+            msg.reply(val);
+            break;
+          }
+        }, obj);
+        break;
+      case 's':
+        sendEmoji(emojis[str[1]],null);
+        break;
     }
 });
 
@@ -85,7 +97,6 @@ function createEmoji(url){
 
 function sendEmoji(url,user){
     client_dis.channels.cache.get('602424007530119171').send(url);
-    client_dis.channels.cache.get('602424007530119171').send(`by ${user}`);
 }
 
 // Discordへの接続
