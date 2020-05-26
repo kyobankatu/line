@@ -66,9 +66,9 @@ client_dis.on('ready', () => {
 client_dis.on('message', msg => {
     if(msg.author.bot) return;
     var str = msg.content.split(' ');
-    msg.reply(str);
     if (str[0] === '/setName') {
       emojis[str[1]]=emojis[2];
+      msg.reply(str[1]);
     }else if(str[0] === 's'){
       sendEmoji(emojis[str[1]],null);
     }
