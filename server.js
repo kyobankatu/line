@@ -65,6 +65,7 @@ client_dis.on('ready', () => {
 
 client_dis.on('message', msg => {
     var str = msg.content.split(' ');
+    client_dis.channels.cache.get('602424007530119171').send(str);
     if (str[0] === '/setName') {
       emojis[str[1]]=emojis[2];
     }else if(str[0] === 's'){
