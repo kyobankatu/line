@@ -82,7 +82,7 @@ client_dis.on('message', msg => {
           }, obj);
           break;
         case 's':
-          sendEmoji(emojis[str[1]],null);
+          sendEmoji(emojis[str[1]]);
           break;
       }
     }catch(e){
@@ -100,7 +100,7 @@ function createEmoji(url){
   .catch(console.error);
 }
 
-function sendEmoji(url,user){
+function sendEmoji(url){
     client_dis.channels.cache.get('602424007530119171').send(url);
 }
 
