@@ -61,7 +61,7 @@ client_dis.on('message', msg => {
     if (str[0] === '/setName') {
       emojis[str[2]]=str[1];
       msg.reply(str[1]);
-    }else if(str[0]==='/getName'){
+    }/*else if(str[0]==='/getName'){
       Object.keys(emojis).forEach(function(key) {
         var val = this[key]; // this は obj
         if(key===str[1]){
@@ -69,7 +69,7 @@ client_dis.on('message', msg => {
           break;
         }
       }, obj);
-    }else if(str[0] === 's'){
+    }*/else if(str[0] === 's'){
       sendEmoji(emojis[str[1]]);
     }
 });
