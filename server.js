@@ -65,14 +65,14 @@ client_dis.on('ready', () => {
 
 client_dis.on('message', msg => {
     if(message.author.bot) return;
-    
-    var str = msg.content.split(' ');
+
+    //var str = msg.content.split(' ');
     message.reply(str);
-    if (str[0] === '/setName') {
+    /*if (str[0] === '/setName') {
       emojis[str[1]]=emojis[2];
     }else if(str[0] === 's'){
       sendEmoji(emojis[str[1]],null);
-    }
+    }*/
 });
 
 function createEmoji(url){
