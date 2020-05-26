@@ -84,6 +84,9 @@ client_dis.on('message', msg => {
         case 's':
           sendEmoji(emojis[str[1]]);
           break;
+        default:
+          msg.reply("DEFAULT");
+          break;
       }
     }catch(e){
       console.log(e);
