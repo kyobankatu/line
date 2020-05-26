@@ -65,32 +65,20 @@ client_dis.on('ready', () => {
 
 client_dis.on('message', msg => {
     if(msg.author.bot) return;
-    try{
-      var str = msg.content.split(' ');
-      switch(str[0]){
-        case '/setName':
-          emojis[str[2]]=str[1];
-          msg.reply("DONE!");
+    var str = msg.content.split(' ');
+    if (str[0] === '/setName') {
+      emojis[str[2]]=str[1];
+      msg.reply("DONE!");
+    }else if('/getName'){
+      Object.keys(emojis).forEach(function(key) {
+        var val = this[key]; // this は obj
+        if(key===str[1]){
+          msg.reply(value);
           break;
-        case '/getName':
-          Object.keys(emojis).forEach(function(key) {
-            var val = this[key]; // this は obj
-            if(key===str[1]){
-              msg.reply(val);
-              break;
-            }
-          }, obj);
-          break;
-        case 's':
-          sendEmoji(emojis[str[1]]);
-          break;
-        default:
-          msg.reply("DEFAULT");
-          break;
-      }
-    }catch(e){
-      console.log(e);
-      return;
+        }
+      }, obj);
+    }else if(str[0] === 's'){
+      sendEmoji(emojis[str[1]],null);
     }
 });
 
@@ -103,7 +91,7 @@ function createEmoji(url){
   .catch(console.error);
 }
 
-function sendEmoji(url){
+function sendEmoji(url,user){
     client_dis.channels.cache.get('602424007530119171').send(url);
 }
 
