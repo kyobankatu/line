@@ -37,17 +37,9 @@ function handleEvent(event) {
   }
 
   let url = 'https://stickershop.line-scdn.net/stickershop/v1/sticker/'+event.message.stickerId+'/iPhone/sticker_key@2x.png'
-  // create a echoing text message
-  const echo = { 
-      type: 'text', 
-      text: url
-    };
 
-    sendEmoji(url);
-    //createEmoji(url);
-
-  // use reply API
-  return client.replyMessage(event.replyToken, echo);
+  sendEmoji(url);
+  //createEmoji(url);
 }
 
 // listen on port
