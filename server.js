@@ -67,18 +67,21 @@ client_dis.on('disconnect', () => {
 client_dis.on('message', msg => {
     if(msg.author.bot) return;
     var str = msg.content.split(' ');
-    if (str[0] === '/add') {
-      emojis[str[2]]=str[1];
-      msg.reply(str[1]);
-    }else if(str[0]==='/find'){
-      for (let key in emojis) {
-        if(emojis[key]===str[1]){
-          msg.reply(key);
-          break;
+    switch(str[0]){
+      case '/add':
+        emojis[str[2]]=str[1];
+        msg.reply(str[1]);
+        break;
+      case '/find':
+        for (let key in emojis) {
+          if(emojis[key]===str[1]){
+            msg.reply(key);
+            break;
+          }
         }
-      }
-    }else if(str[0] === 's'){
-      sendEmoji(emojis[str[1]]);
+      case 's':
+        sendEmoji(emojis[str[1]]);
+        break;
     }
 });
 
@@ -92,7 +95,7 @@ function createEmoji(url){
 }
 
 function sendEmoji(url){
-    client_dis.channels.cache.get('602424007530119171').send(url);
+    client_dis.channels.cache.get('602415458947301383').send(url);
 }
 
 // Discordへの接続
