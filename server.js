@@ -2,7 +2,6 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
-var emojis = {};
 
 // create LINE SDK config from env variables
 const config = {
@@ -48,20 +47,30 @@ app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
 
+//---------------------これ以下Discord------------------------------//
+
 const Discord = require('discord.js');
 const client_dis = new Discord.Client();
+
+var fs = require('fs');
+var emojis = JSON.parse(fs.readFileSync('./memo.json', 'utf8'));
 
 client_dis.on('ready', () => {
     console.log(`Logged in as ${client_dis.user.tag}!`);
 });
 
+client_dis.on('disconnect', () => {
+  console.log(`Logged in as ${client_dis.user.tag}!`);
+  fs.writeFileSync('./memo.json', JSON.stringify(emojis));
+});
+
 client_dis.on('message', msg => {
     if(msg.author.bot) return;
     var str = msg.content.split(' ');
-    if (str[0] === '/setName') {
+    if (str[0] === '/add') {
       emojis[str[2]]=str[1];
       msg.reply(str[1]);
-    }else if(str[0]==='/getName'){
+    }else if(str[0]==='/find'){
       for (let key in emojis) {
         if(emojis[key]===str[1]){
           msg.reply(key);
