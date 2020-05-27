@@ -79,6 +79,7 @@ client_dis.on('message', msg => {
             break;
           }
         }
+        break;
       case 's':
         sendEmoji(emojis[str[1]]);
         break;
@@ -95,7 +96,7 @@ function createEmoji(url){
 }
 
 function sendEmoji(url){
-    client_dis.channels.cache.get('602415458947301383').send(url);
+    client_dis.channels.cache.get('602424007530119171').send(url);
 }
 
 // Discordへの接続
