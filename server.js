@@ -71,6 +71,7 @@ client_dis.on('message', msg => {
       case '/add':
         emojis[str[2]]=str[1];
         msg.reply(str[1]);
+        fs.writeFileSync('./memo.json', JSON.stringify(emojis));
         break;
       case '/find':
         for (let key in emojis) {
