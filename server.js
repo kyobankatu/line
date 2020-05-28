@@ -61,7 +61,10 @@ client_dis.on('ready', () => {
 
 client_dis.on('disconnect', () => {
   console.log(`Logged in as ${client_dis.user.tag}!`);
-  fs.writeFileSync('./memo.json', JSON.stringify(emojis));
+  fs.writeFile('./memo.json', JSON.stringify(emojis), (err) => {
+    if (err) throw err;
+    console.log('正常に書き込みが完了しました');
+  });
 });
 
 client_dis.on('message', msg => {
@@ -71,7 +74,10 @@ client_dis.on('message', msg => {
       case '/add':
         emojis[str[2]]=str[1];
         msg.reply(str[1]);
-        fs.writeFileSync('./memo.json', JSON.stringify(emojis));
+        fs.writeFile('./memo.json', JSON.stringify(emojis), (err) => {
+          if (err) throw err;
+          console.log('正常に書き込みが完了しました');
+        });
         break;
       case '/find':
         for (let key in emojis) {
@@ -83,10 +89,6 @@ client_dis.on('message', msg => {
         break;
       case 's':
         sendEmoji(emojis[str[1]]);
-        break;
-      case 'json':
-        var json=await JSON.parse(fs.readFileSync('./memo.json', 'utf8'));
-        console.log(json);
         break;
     }
 });
