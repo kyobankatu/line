@@ -84,6 +84,9 @@ client_dis.on('message', msg => {
       case 's':
         sendEmoji(emojis[str[1]]);
         break;
+      case 'json':
+        msg.reply(JSON.parse(fs.readFileSync('./memo.json', 'utf8')));
+        break;
     }
 });
 
